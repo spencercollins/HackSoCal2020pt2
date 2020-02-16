@@ -36,7 +36,14 @@
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
+    // firebase.auth().setPersistance(firebase.auth.Auth.Persistence.LOCAL);
     // firebase.analytics();
+
+    firebase.auth().onAuthStateChanged(function (test) {
+      let user = firebase.auth().currentUser;
+
+    });
+
     firebase.auth().onAuthStateChanged(function (user) {
           if (user) {
             document.getElementById('go-to-button').className = '';
@@ -47,9 +54,12 @@
       function goToHomepage() {
         window.location.href = './Homepage.html';
       }
-
-
     console.log(firebase.auth().currentUser);
+    firebase.auth().onAuthStateChanged(function (test) {
+      console.log(firebase.auth().currentUser);
+
+    });
+
     function signIn() {
         let email = document.getElementById('email-address-sign-in').value;
         let password = document.getElementById('password-sign-in').value;

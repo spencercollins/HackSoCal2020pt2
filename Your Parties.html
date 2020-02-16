@@ -69,12 +69,8 @@
     </p>
     <table for="parties" >Choose One of your Parties:</table>
 
-    <select id="newOptions">
-      <option value="parties"></option>
-      <!-- <option value="parties">Spencers Wedding</option>
-      <option value="parties">Sophias Bat Mitzvah</option>
-      <option value="parties">Colins Cincinera</option>
-      <option value="parties">Aidans Bris</option> -->
+    <select id="parties">
+
     </select>
     <p>
       <h4> Enter Theme of Your Party </h4>
@@ -115,33 +111,39 @@
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
 
-    uid = user.uid;
+    firebase.auth().onAuthStateChanged(function (test) {
+      let user = firebase.auth().currentUser;
+      console.log(firebase.auth().currentUser);
+    });
 
     function submit() {
       let value = document.getElementById('Name-Of-Party').value;
-
+      firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+              firebase.firestore().collection('users').doc(user.uid).collection('parties').doc(value).set({
+                 users: [],
+               });
+            } else {
+              console.log("not logged in");
+            }
+        })
      // firebase.auth().currentUser.uid
-     firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).collection('parties').doc(value).set({
-        users: [],
-      });
     }
+    firebase.auth().onAuthStateChanged(function (user) {
+          if (user) {
+            firebase.firestore().collection('users').doc(user.uid).collection('parties').get().then((snapshot) => {
+              let newOptions = ' ';
+              snapshot.forEach(function (doc) {
+                newOptions += '<option value="' + doc.id + '">' + doc.id + '</option>';
+                console.log(newOptions);
+              });
+              document.getElementById('parties').innerHTML = newOptions;
+            });
+          } else {
+            console.log("not logged in");
+          }
+      })
 
-    firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).collection('parties').get().then((snapshot) => {
-      let newOptions = ' ';
-      snapshot.forEach(function (doc) {
-        newOptions += '<option value="' + doc.id + '">' + doc.id + '</option>';
-        console.log(newOptions);
-      });
-
-      document.getElementById('parties').innerHTML = newOptions;
-    });
-<<<<<<< HEAD
-=======
-
->>>>>>> eb646c9e41db4d487487c42be09f532ef3166f47
-=======
->>>>>>> f6b947f6814460f30728aef9d0269bba5e94af23
   </script>
 </html>

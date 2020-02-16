@@ -24,6 +24,11 @@
     firebase.analytics();
     //firebase.auth().currentUser.uid
 
+    firebase.auth().onAuthStateChanged(function (test) {
+      let user = firebase.auth().currentUser;
+
+    });
+
     function ThePowerOfKnowledge(){
       firebase.firestore().collection(test).doc(PxLdQlw83l6tiOoPpj6S).set({
         Sample : "Works"

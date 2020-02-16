@@ -25,7 +25,7 @@
     <p>
       <button onclick="goToHomepage();" class="hidden" id="go-to-button">Go To Homepage</button>
     </p>
-    
+
   </body>
   <script>
   var firebaseConfig = {
@@ -39,7 +39,13 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+  firebase.auth().setPersistance(firebase.auth.Auth.Persistence.LOCAL);
   // firebase.analytics();
+
+  firebase.auth().onAuthStateChanged(function (test) {
+    let user = firebase.auth().currentUser;
+    console.log(firebase.auth().currentUser);
+  });
 
   firebase.auth().onAuthStateChanged(function (user) {
           if (user) {
