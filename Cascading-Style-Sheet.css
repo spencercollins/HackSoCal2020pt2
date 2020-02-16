@@ -1,6 +1,6 @@
 
 body {
-background-image: url("";)
+background-color: CornflowerBlue;
 }
 div {
   background-color: green;
@@ -17,7 +17,7 @@ h2 {
   color: blue;
 }
   a{
-  color: yellow;
+  color: green;
 }
 h3 {
   font-size: 30;
@@ -29,7 +29,7 @@ h5 {
 }
 h4 {
   font-size: 20;
-  color: red;
+  color: white;
 }
 head {
   text-align: center;
@@ -38,4 +38,14 @@ head {
 }
 .hidden {
   display: none;
+}
+
+.centered-input {
+  display: block;
+  width: 150px;
+  margin: 0 auto;
+}
+
+.boxed{
+  border: 15px solid green ;
 }
