@@ -37,6 +37,14 @@
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
 
+<<<<<<< HEAD
+=======
+    firebase.auth().onAuthStateChanged(function (test) {
+      let user = firebase.auth().currentUser;
+
+    });
+
+>>>>>>> c9d8f28a217cd1fa31c57e91f4adf87aee9848b1
     global var invitedUsers = new Array();
     function submit() {
       document.getElementById("listInvitees").innerHTML = document.getElementById("listInvitees").innerHTML  + "<br>"+ document.getElementById("invitee").value;
