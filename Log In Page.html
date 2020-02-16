@@ -3,26 +3,29 @@
     <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-firestore.js"></script>
-    <link rel="stylesheet" href="./Cascading-Style-Sheet.css">
+    <link rel="stylesheet" href="Style For Sign In and Out.css">
   </head>
   <body>
-    <link href="Cascading-Style-Sheet.css" rel="stylesheet" type="text/css">
-    <h2>Sign into Already Existing Account</h2>
-    <p>
-      Email Address
-      <input id="email-address-sign-in" type="email" />
-    </p>
-    <p>
-      Password
-      <input id="password-sign-in" type="password" />
-    </p>
-    <p>
-      <button onclick="signIn();">Sign In</button>
-    </p>
-    <p>
-      <button onclick="goToHomepage();" class="hidden" id="go-to-button">Go To Homepage</button>
-    </p>
-    <a href="Sign Up Page.html">Sign Up</a>
+    <link href="Style For Sign In and Out.css" rel="stylesheet" type="text/css">
+    <div>
+      <h2>Sign into Already Existing Account</h2>
+      <p>
+        Email Address:
+        <input id="email-address-sign-in" type="email" />
+      </p>
+      <p>
+        Password: &nbsp
+        <input id="password-sign-in" type="password" />
+      </p>
+      <p>
+        <button onclick="signIn();"><center>Sign In</center></button>
+      </p>
+      <p>
+        <button onclick="goToHomepage();" class="hidden" id="go-to-button"><center>Go To Homepage</center></button>
+      </p>
+      <a href="Sign Up Page.html"><center>Create New Account</center></a>
+    </div>
+
   </body>
   <script>
     var firebaseConfig = {
