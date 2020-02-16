@@ -2,6 +2,10 @@
 body {
 background-image: url("";)
 }
+div {
+  background-color: green;
+  width: 1000px;
+}
 h1 {
   text-align: center;
   font-size: 60;
