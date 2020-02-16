@@ -1,22 +1,6 @@
-footer {
-  background: black;
-  color: gray;
-  font-size 12px;
-  padding: 20px 20px;
-  text-align: center;
-}
-@media screen and (max-width: 400px){
-  .features{
-    background: white;
-  }
-}
-@media screen and (max-width: 800px){
-  .features{
-    background: white;
-  }
-}
+
 body {
-background-color: #d3d3d3 ;
+background-image: url("paper.gif";)
 }
 h1 {
   text-align: center;
@@ -34,6 +18,10 @@ h2 {
 h3 {
   font-size: 30;
   color: blue;
+}
+h5 {
+  font-size: 20:
+  color: green;
 }
 h4 {
   font-size: 20;
