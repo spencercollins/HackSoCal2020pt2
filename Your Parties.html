@@ -13,12 +13,8 @@
     </p>
     <table for="parties" >Choose One of your Parties:</table>
 
-    <select id="newOptions">
-      <option value="parties"></option>
-      <!-- <option value="parties">Spencers Wedding</option>
-      <option value="parties">Sophias Bat Mitzvah</option>
-      <option value="parties">Colins Cincinera</option>
-      <option value="parties">Aidans Bris</option> -->
+    <select id="parties">
+
     </select>
     <p>
       <h4> Enter Theme of Your Party </h4>
@@ -48,7 +44,6 @@
   </body>
   <link href="Cascading-Style-Sheet.css" rel="stylesheet" type="text/css">
   <script>
-<<<<<<< HEAD
     var firebaseConfig = {
       apiKey: "AIzaSyB_Jel93p7tJz9Ay4LUKWf0lPhbu3cwwRI",
       authDomain: "e-vent-4c051.firebaseapp.com",
@@ -61,28 +56,38 @@
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
 
-    uid = user.uid;
+    firebase.auth().onAuthStateChanged(function (test) {
+      let user = firebase.auth().currentUser;
+      console.log(firebase.auth().currentUser);
+    });
 
     function submit() {
       let value = document.getElementById('Name-Of-Party').value;
-
+      firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+              firebase.firestore().collection('users').doc(user.uid).collection('parties').doc(value).set({
+                 users: [],
+               });
+            } else {
+              console.log("not logged in");
+            }
+        })
      // firebase.auth().currentUser.uid
-     firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).collection('parties').doc(value).set({
-        users: [],
-      });
     }
+    firebase.auth().onAuthStateChanged(function (user) {
+          if (user) {
+            firebase.firestore().collection('users').doc(user.uid).collection('parties').get().then((snapshot) => {
+              let newOptions = ' ';
+              snapshot.forEach(function (doc) {
+                newOptions += '<option value="' + doc.id + '">' + doc.id + '</option>';
+                console.log(newOptions);
+              });
+              document.getElementById('parties').innerHTML = newOptions;
+            });
+          } else {
+            console.log("not logged in");
+          }
+      })
 
-    firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).collection('parties').get().then((snapshot) => {
-      let newOptions = ' ';
-      snapshot.forEach(function (doc) {
-        newOptions += '<option value="' + doc.id + '">' + doc.id + '</option>';
-        console.log(newOptions);
-      });
-
-      document.getElementById('parties').innerHTML = newOptions;
-    });
-=======
-
->>>>>>> eb646c9e41db4d487487c42be09f532ef3166f47
   </script>
 </html>

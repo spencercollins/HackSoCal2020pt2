@@ -5,7 +5,7 @@
   <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-firestore.js"></script>
   <div class="topnav">
-   <a href="Messages"><p style="text-align:center">Messages</a>
+   <a href="Messages.html"><p style="text-align:center">Messages</a>
   <a href="Log In Page.html">Login</a>
   <a href="About.html" style="text-align:center">About</a>
   <a>
@@ -29,11 +29,13 @@ var firebaseConfig = {
   messagingSenderId: "336176879404",
   appId: "1:336176879404:web:4b3080f52f9adb4d0f7e89"
 };
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-// firebase.analytics();
-
-    console.log(firebase.auth().currentUser);
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    // firebase.auth().setPersistance(firebase.auth.Auth.Persistence.LOCAL);
+    // firebase.analytics();
+    firebase.auth().onAuthStateChanged(function (test) {
+      console.log(firebase.auth().currentUser.email);
+    });
     firebase.auth().onAuthStateChanged(function (user) {
       console.log('Homepage', user)
         if (user) {
@@ -42,6 +44,8 @@ firebase.initializeApp(firebaseConfig);
           document.getElementById('go-to-button').className = 'hidden';
         }
     });
+
+
 
     function signOut() {
       firebase.auth().signOut();
