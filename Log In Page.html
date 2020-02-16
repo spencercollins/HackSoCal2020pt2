@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-firestore.js"></script>
+  </head>
+  <body>
+    <link href="Cascading-Style-Sheet.css" rel="stylesheet" type="text/css">
+    <h2>Create an Account</h2>
+    <p>
+      Email Address
+      <input id="email-address" type="email" />
+    </p>
+    <p>
+      First Name
+      <input id="first-name" type="userName" />
+    </p>
+    <p>
+      Password
+      <input id="password" type="password" />
+    </p>
+    <p>
+      <button onclick="signUp();">Sign Up</button>
+    </p>
+    <h2>Sign into Already Existing Account</h2>
+    <p>
+      Email Address
+      <input id="email-address-sign-in" type="email" />
+    </p>
+    <p>
+      Password
+      <input id="password-sign-in" type="password" />
+    </p>
+    <p>
+      <button onclick="signIn();">Sign In</button>
+    </p>
+
+    <script>
+      var firebaseConfig = {
+        apiKey: "AIzaSyB_Jel93p7tJz9Ay4LUKWf0lPhbu3cwwRI",
+        authDomain: "e-vent-4c051.firebaseapp.com",
+        databaseURL: "https://e-vent-4c051.firebaseio.com",
+        projectId: "e-vent-4c051",
+        storageBucket: "e-vent-4c051.appspot.com",
+        messagingSenderId: "336176879404",
+        appId: "1:336176879404:web:4b3080f52f9adb4d0f7e89"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      function signUp() {
+        let email = document.getElementById('email-address').value;
+        let password = document.getElementById('password').value;
+
+        console.log(email, password)
+        firebase.auth().createUserWithEmailAndPassword(email, password).then(function (user) {
+          uploadName(user.user.uid);
+        });
+      }
+      function uploadName(uid){
+        let element = document.getElementById('first-name');
+        firebase.firestore().collection('users').doc(uid).set({
+          name: element.value
+        })
+      }
+
+      function signIn() {
+        let email = document.getElementById('email-address-sign-in').value;
+        let password = document.getElementById('password-sign-in').value;
+
+        firebase.auth().signInUserWithEmailAndPassword(email, password);
+      }
+      function redirectHome() {
+
+      }
+    </script>
+  </body>
+</html>

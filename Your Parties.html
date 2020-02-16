@@ -1,0 +1,89 @@
+<html>
+  <head>
+    <h1> Your Parties </h1> <h3> <a href="Homepage.html"> Back to Home </a> </h3>
+
+    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-firestore.js"></script>
+  </head>
+  <body>
+    <p>
+      Name of New Party
+      <input id="Name-Of-Party" type="list" />
+      <button onclick="submit();">Submit</button>
+    </p>
+    <label for="parties" >Choose One of your Parties:</label>
+
+    <select id="newOptions">
+      <option value="parties"></option>
+      <!-- <option value="parties">Spencers Wedding</option>
+      <option value="parties">Sophias Bat Mitzvah</option>
+      <option value="parties">Colins Cincinera</option>
+      <option value="parties">Aidans Bris</option> -->
+    </select>
+    <p>
+      <h4> Enter Theme of Your Party </h4>
+      <input id="Name-Of-Party" type="list" />
+      <button onclick="submit();">Save</button>
+
+    </p>
+    <p>
+      <h4> Enter Formality of Your Party </h4>
+      <input id="Name-Of-Party" type="list" />
+      <button onclick="submit();">Save</button>
+
+    </p>
+    <p>
+      <h4> Enter the Venue/Site of Your Party </h4>
+      <input id="Name-Of-Party" type="list" />
+      <button onclick="submit();">Save</button>
+
+    </p>
+    <p>
+      <h4> Enter the Date and Time of Your Party </h4>
+      <input id="Name-Of-Party" type="list" />
+      <button onclick="submit();">Save</button>
+
+    </p>
+
+  </body>
+  <link href="Cascading-Style-Sheet.css" rel="stylesheet" type="text/css">
+  <script>
+<<<<<<< HEAD
+    var firebaseConfig = {
+      apiKey: "AIzaSyB_Jel93p7tJz9Ay4LUKWf0lPhbu3cwwRI",
+      authDomain: "e-vent-4c051.firebaseapp.com",
+      databaseURL: "https://e-vent-4c051.firebaseio.com",
+      projectId: "e-vent-4c051",
+      storageBucket: "e-vent-4c051.appspot.com",
+      messagingSenderId: "336176879404",
+      appId: "1:336176879404:web:4b3080f52f9adb4d0f7e89"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    uid = user.uid;
+
+    function submit() {
+      let value = document.getElementById('Name-Of-Party').value;
+
+     // firebase.auth().currentUser.uid
+     firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).collection('parties').doc(value).set({
+        users: [],
+      });
+    }
+
+    firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).collection('parties').get().then((snapshot) => {
+      let newOptions = ' ';
+      snapshot.forEach(function (doc) {
+        newOptions += '<option value="' + doc.id + '">' + doc.id + '</option>';
+        console.log(newOptions);
+      });
+
+      document.getElementById('parties').innerHTML = newOptions;
+    });
+=======
+    
+>>>>>>> eb646c9e41db4d487487c42be09f532ef3166f47
+  </script>
+</html>
