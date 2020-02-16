@@ -8,6 +8,8 @@
     <p>
       <font size="40">Choose your party goers to invite:</font>
     </p>
+    <select id = "parties">
+    </select>
     <link href="Cascading-Style-Sheet.css" rel="stylesheet" type="text/css">
     <p>
 
@@ -38,8 +40,15 @@
 
     firebase.auth().onAuthStateChanged(function (test) {
       let user = firebase.auth().currentUser;
-
-    });
+      firebase.firestore().collection('users').doc(user.uid).collection('parties').get().then((snapshot) => {
+        let temp = ' ';
+        snapshot.forEach(function (doc) {
+          temp += '<option value="' + doc.id + '">' + doc.id + '</option>';
+          console.log(temp);
+          });
+          document.getElementById('parties').innerHTML = temp;
+        });
+        });
     let invitedUsers = new Array();
     function submit() {
       document.getElementById("listInvitees").innerHTML = document.getElementById("listInvitees").innerHTML  + "<br>"+ document.getElementById("invitee").value;
@@ -59,10 +68,10 @@
                 console.log(i);
                 user = firebase.auth().currentUser;
                 console.log(user);
-                firebase.firestore().collection('users').doc(user.uid).collection('parties').doc('invitees').collection(invitedUsers[i]);
-                firebase.firestore().collection('users').doc(user.uid).collection('parties').doc('inviteesStatus').collection("Null");
+                firebase.firestore().collection('users').doc(user.uid).collection('parties').doc(partyhere).collection(invitedUsers[i]);
+                firebase.firestore().collection('users').doc(user.uid).collection('parties').doc(partyhere).collection("Null");
               }
-              
+
       invitedUsers = new Array();
     }
   </script>
