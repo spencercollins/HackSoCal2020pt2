@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <div class="topnav">
+   <a href="Messages"><p style="text-align:center">Messages</a>
+  <a href="Log In Page.html">Login</a>
+  <a href="About.html" style="text-align:center">About</a>
+  <a>
+    <button onclick="signOut();" class="hidden" id="go-to-button" style="text-align:center">Sign Out</button>
+  </a>
+</div>
+<h1> <a href="Your Parties.html"> MyParties </a> </h1>
+  <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-firestore.js"></script>
+  <meta charset="utf-8">
+  <h1 Cascading-Style-Sheet.css> Welcome to E-vent! </h1>
+  <link href="Cascading-Style-Sheet.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <p>
+    <button onclick="signOut();" class="hidden" id="go-to-button">Sign Out</button>
+  </p>
+</body>
+<script>
+};
+<<<<<<< HEAD
+}
+=======
+firebase.initializeApp(firebaseConfig);
+
+    console.log(firebase.auth().currentUser);
+    firebase.auth().onAuthStateChanged(function (user) {
+      console.log('Homepage', user)
+        if (user) {
+          document.getElementById('go-to-button').className = '';
+        } else {
+          document.getElementById('go-to-button').className = 'hidden';
+        }
+    })
+
+    function signOut() {
+      firebase.auth().signOut();
+    }  }
+
+
+>>>>>>> eb646c9e41db4d487487c42be09f532ef3166f47
+</script>
+</html>
