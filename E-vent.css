@@ -1,6 +1,7 @@
 h1{
   font-size: 50px;
-  color: blue;
+  color: gold;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   font-family: "Snell Roundhand, cursive", "Snell Roundhand, cursive", cursive;
   text-align: center;
 }
@@ -26,9 +27,12 @@ h3{
 body{
   background-color: #C4DAF9;
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+background-color: #C4DAF9;
+margin: 0px;
+}
   }
 div{
-  background-color: 65C459;
+  background-color: #56A94B;
   border-radius: 50px;
   padding: 25;
   width: 500px;
@@ -38,8 +42,6 @@ div{
   left: 50%;
   margin-top: -150px;
   margin-left: -250px;
-  margin: 0 auto;
-}
 }
 head{
   text-align: center;
