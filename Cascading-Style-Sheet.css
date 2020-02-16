@@ -3,14 +3,14 @@ body {
 background-color: CornflowerBlue;
 }
 h1 {
+  color: gold;
   text-align: center;
   font-size: 60;
-  color: blue;
 }
 h2 {
   text-align: left;
   font-size: 40;
-  color: blue;
+  color: gold;
 }
   a{
   color: green;
