@@ -37,14 +37,6 @@
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
 
-<<<<<<< HEAD
-=======
-    firebase.auth().onAuthStateChanged(function (test) {
-      let user = firebase.auth().currentUser;
-
-    });
-
->>>>>>> c9d8f28a217cd1fa31c57e91f4adf87aee9848b1
     global var invitedUsers = new Array();
     function submit() {
       document.getElementById("listInvitees").innerHTML = document.getElementById("listInvitees").innerHTML  + "<br>"+ document.getElementById("invitee").value;
@@ -54,11 +46,16 @@
     function sendInvites(){
       document.getElementById("listInvitees").innerHTML = "";
       //send Array Contents to Invitees
-      
-      for(i =0; i < invitedUsers.length; i++){
-        //firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).collection('parties').collection('invitees').doc(invitedUsers[i]);
-        //firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).collection('parties').collection('inviteesStatus').doc("Null");
-      }
+      firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+              for(i =0; i < invitedUsers.length; i++){
+                firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).collection('parties').collection('invitees').doc(invitedUsers[i]);
+                firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).collection('parties').collection('inviteesStatus').doc("Null");
+              }
+            } else {
+              console.log("not signed in");
+            }
+        })
       invitedUsers = new Array();
     }
   </script>
