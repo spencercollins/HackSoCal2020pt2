@@ -63,16 +63,27 @@
                   let user = firebase.auth().currentUser;
                   console.log(user);
               });
-              var i;
-              for(i =0; i < invitedUsers.length; i++){
-                console.log(i);
                 user = firebase.auth().currentUser;
                 console.log(user);
-                firebase.firestore().collection('users').doc(user.uid).collection('parties').doc(partyhere).collection(invitedUsers[i]);
-                firebase.firestore().collection('users').doc(user.uid).collection('parties').doc(partyhere).collection("Null");
-              }
+                partyhere = document.getElementById("parties").value;
 
-      invitedUsers = new Array();
-    }
+                firebase.firestore().collection('users').doc(user.uid).collection('parties').doc(partyhere).update({
+                  InvitedGuests: invitedUsers
+                });
+
+            firebase.firestore().collection('users').doc(user.uid).collection('parties').doc(document.getElementById("parties").value).get().then((snapshot) => {
+                //let temp = ' ';
+              var data = snapshot.data();
+               var attendees = data.InvitedGuests;
+               attendees.forEach(function(email){
+                    //This is where email implimentation would take place However email is a paid service to establish
+                    // to mitigate this we have left everything upto the place where we would send the email, this loop
+                    // which could send several emails running through each invited guest, we have also included a webpage
+                    // which is just an invite card, which would be linked in the email, including the previously provided details.
+                    });
+               });
+          //admin.auth().getUserByEmail(email)
+          invitedUsers = new Array();
+      }
   </script>
 </html>
