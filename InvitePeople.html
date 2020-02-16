@@ -35,6 +35,8 @@
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    
     global var invitedUsers = new Array();
     function submit() {
       document.getElementById("listInvitees").innerHTML = document.getElementById("listInvitees").innerHTML  + "<br>"+ document.getElementById("invitee").value;
@@ -50,24 +52,5 @@
       }
       invitedUsers = new Array();
     }
-    // function submit() {
-    //   let value = document.getElementById('Name-Of-Party').value;
-    //
-    //   // firebase.auth().currentUser.uid
-    //   firebase.firestore().collection('users').doc('Wc8utWunvKReea6t3rfQaoRvkwC3').collection('parties').doc(value).set({
-    //     users: [],
-    //   });
-    // }
-    //
-    firebase.firestore().collection('users').doc('Wc8utWunvKReea6t3rfQaoRvkwC3').collection('parties').get().then((snapshot) => {
-      let newOptions = '';
-
-      snapshot.forEach(function (doc) {
-        newOptions += '<option value="' + doc.id + '">' + doc.id + '</option>';
-      });
-
-      document.getElementById('parties').innerHTML = newOptions;
-    });
-    firebase.auth().currentUser.uid
   </script>
 </html>
