@@ -67,9 +67,11 @@ function vs(){
       console.log(firebase.auth().currentUser);
     });
     function submit() {
-      let party = document.getElementById('parties').value;
+      let party = document.getElementById('Name-Of-Party').value;
 
+      console.log(firebase.auth().currentUser.uid, party);
       firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).collection('parties').doc(party).set({
+        users: [],
        });
     }
     function submitFT() {
