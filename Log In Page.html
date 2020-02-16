@@ -3,6 +3,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-firestore.js"></script>
+    <link rel="stylesheet" href="./Cascading-Style-Sheet.css">
   </head>
   <body>
     <link href="Cascading-Style-Sheet.css" rel="stylesheet" type="text/css">
@@ -18,6 +19,10 @@
     <p>
       <button onclick="signIn();">Sign In</button>
     </p>
+    <p>
+      <button onclick="goToHomepage();" class="hidden" id="go-to-button">Go To Homepage</button>
+    </p>
+    <a href="Sign Up Page.html">Sign Up</a>
   </body>
   <script>
     var firebaseConfig = {
@@ -31,21 +36,26 @@
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
-    
-    }
-    function uploadName(uid){
-      let element = document.getElementById('first-name');
-      firebase.firestore().collection('users').doc(uid).set({
-        name: element.value
+    // firebase.analytics();
+    firebase.auth().onAuthStateChanged(function (user) {
+          if (user) {
+            document.getElementById('go-to-button').className = '';
+          } else {
+            document.getElementById('go-to-button').className = 'hidden';
+          }
       })
-    }
+      function goToHomepage() {
+        window.location.href = './Homepage.html';
+      }
 
+
+    console.log(firebase.auth().currentUser);
     function signIn() {
-      let email = document.getElementById('email-address-sign-in').value;
-      let password = document.getElementById('password-sign-in').value;
+        let email = document.getElementById('email-address-sign-in').value;
+        let password = document.getElementById('password-sign-in').value;
 
-      firebase.auth().signInUserWithEmailAndPassword(email, password);
-    }
+        console.log(email, password);
+        firebase.auth().signInWithEmailAndPassword(email, password);
+      }
   </script>
 </html>
