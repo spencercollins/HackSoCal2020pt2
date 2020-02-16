@@ -35,27 +35,34 @@
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
 
-    global var invitedUsers = new Array();
+    firebase.auth().onAuthStateChanged(function (test) {
+      let user = firebase.auth().currentUser;
+
+    });
+    let invitedUsers = new Array();
     function submit() {
       document.getElementById("listInvitees").innerHTML = document.getElementById("listInvitees").innerHTML  + "<br>"+ document.getElementById("invitee").value;
       invitedUsers.push(document.getElementById("invitee").value);
-
+      console.log(invitedUsers[0]);
     }
     function sendInvites(){
-      document.getElementById("listInvitees").innerHTML = "";
+      document.getElementById("listInvitees").innerHTML = "Invited Users <br>";
       //send Array Contents to Invitees
-      firebase.auth().onAuthStateChanged(function (user) {
-            if (user) {
+
+            firebase.auth().onAuthStateChanged(function (test) {
+                  let user = firebase.auth().currentUser;
+                  console.log(user);
+              });
+              var i;
               for(i =0; i < invitedUsers.length; i++){
-                firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).collection('parties').collection('invitees').doc(invitedUsers[i]);
-                firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).collection('parties').collection('inviteesStatus').doc("Null");
+                console.log(i);
+                user = firebase.auth().currentUser;
+                console.log(user);
+                firebase.firestore().collection('users').doc(user.uid).collection('parties').doc('invitees').collection(invitedUsers[i]);
+                firebase.firestore().collection('users').doc(user.uid).collection('parties').doc('inviteesStatus').collection("Null");
               }
-            } else {
-              console.log("not signed in");
-            }
-        })
+              
       invitedUsers = new Array();
     }
   </script>
