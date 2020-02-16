@@ -35,6 +35,8 @@
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    
     global var invitedUsers = new Array();
     function submit() {
       document.getElementById("listInvitees").innerHTML = document.getElementById("listInvitees").innerHTML  + "<br>"+ document.getElementById("invitee").value;

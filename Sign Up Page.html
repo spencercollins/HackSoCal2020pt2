@@ -27,6 +27,27 @@
     </p>
   </body>
   <script>
-    
+  var firebaseConfig = {
+    apiKey: "AIzaSyB_Jel93p7tJz9Ay4LUKWf0lPhbu3cwwRI",
+    authDomain: "e-vent-4c051.firebaseapp.com",
+    databaseURL: "https://e-vent-4c051.firebaseio.com",
+    projectId: "e-vent-4c051",
+    storageBucket: "e-vent-4c051.appspot.com",
+    messagingSenderId: "336176879404",
+    appId: "1:336176879404:web:4b3080f52f9adb4d0f7e89"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+  function signUp() {
+    let email = document.getElementById('email-address').value;
+    let password = document.getElementById('password').value;
+
+    console.log(email, password)
+    firebase.auth().createUserWithEmailAndPassword(email, password).then(function (user) {
+      uploadName(user.user.uid);
+    });
+
   </script>
 </html>
