@@ -11,32 +11,27 @@
       <input id="Name-Of-Party" type="list" />
       <button onclick="submit();" p style="text-align:center">Submit</button>
     </p>
-    <table for="parties" p style="text-align:center">Choose One of your Parties:</table>
+    <table forEach="parties" p style="text-align:center">Choose One of your Parties:</table>
 
     <select id="parties"><p style="text-align:center">
 
     </select>
-    <div class="boxed"> 
-      <h4 p style="text-align:center"> Enter Theme of Your Party </h4>
-      <input class="centered-input" id="Name-Of-Party" type="list" /><p style="text-align:center">
-      <button onclick="submit();" p style="text-align:center">Save</button>
-
-    <p>
-      <h4 p style="text-align:center"> Enter Formality of Your Party </h4>
-      <input class="centered-input" id="Name-Of-Party" type="list" /><p style="text-align:center">
-      <button onclick="submit();" p style="text-align:center">Save</button>
+    <div class="boxed">
+      <h4 p style="text-align:center"> Enter Formality/Theme of Your Party </h4>
+      <input id="Formality/Theme" class="centered-input" id="Name-Of-Party" type="list" /><p style="text-align:center">
+      <button onclick="submitFT();" p style="text-align:center">Save</button>
 
     </p>
     <p>
       <h4 p style="text-align:center"> Enter the Venue/Site of Your Party </h4>
-      <input class="centered-input" id="Name-Of-Party" type="list" /><p style="text-align:center">
-      <button onclick="submit();" p style="text-align:center">Save</button>
+      <input id="VenueSite" class="centered-input" id="Name-Of-Party" type="list" /><p style="text-align:center">
+      <button onclick="submitVS();" p style="text-align:center">Save</button>
 
     </p>
     <p>
       <h4 p style="text-align:center"> Enter the Date and Time of Your Party </h4>
-      <input class="centered-input" id="Name-Of-Party" type="list" /><p style="text-align:center">
-      <button onclick="submit();" p style="text-align:center">Save</button>
+      <input id="DateTime" class="centered-input" id="Name-Of-Party" type="list" /><p style="text-align:center">
+      <button onclick="submitDT();" p style="text-align:center">Save</button>
 
     </p>
     <p>
@@ -46,6 +41,15 @@
   </body>
   <link href="Cascading-Style-Sheet.css" rel="stylesheet" type="text/css">
   <script>
+  function ft(){
+  return document.getElementById("Formality/Theme").value;
+}
+function vs(){
+  return document.getElementById("VenueSite").value;
+  }
+  function dt(){
+  return document.getElementById("DateTime").value;
+  }
     var firebaseConfig = {
       apiKey: "AIzaSyB_Jel93p7tJz9Ay4LUKWf0lPhbu3cwwRI",
       authDomain: "e-vent-4c051.firebaseapp.com",
@@ -62,20 +66,37 @@
       let user = firebase.auth().currentUser;
       console.log(firebase.auth().currentUser);
     });
-
     function submit() {
-      let value = document.getElementById('Name-Of-Party').value;
-      firebase.auth().onAuthStateChanged(function (user) {
-            if (user) {
-              firebase.firestore().collection('users').doc(user.uid).collection('parties').doc(value).set({
-                 users: [],
-               });
-            } else {
-              console.log("not logged in");
-            }
-        })
-     // firebase.auth().currentUser.uid
+      let party = document.getElementById('parties').value;
+
+      firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).collection('parties').doc(party).set({
+       });
     }
+    function submitFT() {
+      let party = document.getElementById('parties').value;
+
+      firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).collection('parties').doc(party).update({
+         formalityTheme: ft()
+       });
+    }
+
+    function submitVS() {
+      let party = document.getElementById('parties').value;
+
+      firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).collection('parties').doc(party).update({
+         venueSite: vs()
+       });
+    }
+
+    function submitDT() {
+      let party = document.getElementById('parties').value;
+
+      firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).collection('parties').doc(party).update({
+         dateTime: dt()
+       });
+    }
+
+
     firebase.auth().onAuthStateChanged(function (user) {
           if (user) {
             firebase.firestore().collection('users').doc(user.uid).collection('parties').get().then((snapshot) => {

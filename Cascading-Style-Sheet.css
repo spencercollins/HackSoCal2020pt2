@@ -44,4 +44,6 @@ head {
 
 .boxed{
   border: 15px solid green ;
+  padding: 50px color: green;
+  margin: 20px color: green;
 }
